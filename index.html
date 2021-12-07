@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+
+    <link rel="stylesheet"  href="./reset.css">
+    <link rel="stylesheet"  href="./index.css">
+</head>
+<body>
+    <h1>decoder</h1>
+    <form>
+        <fieldset>
+            <div id="mensagemUsuario">
+                <label>Escreva sua mensagem:</label>
+                <input type="text"  id="textoUsuario">
+            </div>
+
+            <div id="escolhaOTipo">
+                <label>Escolha seu tipo:</label>
+                <select id="select">
+                  <option value="escolha uma opção">Selecione</option>
+                  <option id="cifra" value="cifra">Cifra de César</option>
+                  <option id="base" value="base64">Base64</option>
+                </select>
+            </div>
+
+            <div id="divInputCifra">
+                <label>Escolha um número</label>
+                <input type="number" min="1" max="25" id="inputNumber">
+            </div>
+
+            <div id='escolha-dec-cod'>
+                <label>
+                    <input type="radio" name="bntCodificar" value="codificar" id="codificar"> codificar
+                </label>
+                <label>
+                    <input type="radio" name="bntCodificar" value="decodificar" id="decodificar"> decodificar
+                </label>
+            </div>
+            
+            <div id="bntenvio">
+                    <input type="submit" value="decoder" id="bnt"> 
+                    <textarea id='mensagemCodificada'></textarea>
+            </div>
+        </fieldset>
+    </form>
+
+    <script src="./java.js"></script>
+</body>
+</html>
