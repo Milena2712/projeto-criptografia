@@ -12,11 +12,50 @@ var resultado = document.querySelector('#mensagemCodificada');
 
 var textoUsuario = document.querySelector('#textoUsuario');
 
-var optioncifra = document.querySelector('#cifra')
+let alphabet =
+  "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyzàèìòùáéíóúâêîôãõ?!.,/;:()@-_ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyzàèìòùáéíóúâêîôãõ?!.,/;:()@-_";
 
-var optionbase = document.querySelector('#base')
+function codCesar(){
+    var textMessage = document.getElementById('textoUsuario').value
+    console.log(textMessage)
+    var incremento = document.querySelector('#inputNumber').value;
+    console.log(incremento)
+    var textCripto = ""
+    for (var i = 0; i < textMessage.length; i++) {
+        for (var j = 0; j < alphabet.length; j++){
+          if (textMessage[i] == alphabet[j]) {
+            textCripto += alphabet[j + parseInt(incremento)];
+            break;
+          } else if (textMessage[i] == " ") {
+            textCripto += " ";
+            break;
+          }
+    }
+        
+}
+        return textCripto
+}
 
-var incremento = document.querySelector('#inputNumber');
+function decodCesar(){
+    var textMessage = document.getElementById('textoUsuario').value
+    console.log(textMessage)
+    var incremento = document.querySelector('#inputNumber').value;
+    console.log(incremento)
+    var textCripto = ""
+    for (var i = 0; i < textMessage.length; i++) {
+        for (var j = alphabet.length; j > 0; j--){
+          if (textMessage[i] == alphabet[j]) {
+            textCripto += alphabet[j - parseInt(incremento)];
+            break;
+          } else if (textMessage[i] == " ") {
+            textCripto += " ";
+            break;
+          }
+    }
+        
+}
+        return textCripto
+}
 
 
 
@@ -35,25 +74,32 @@ select.addEventListener('change', function(){
         divInputCifra.style.display = 'none'
     }
   } )
-
   
-bntDecoder.addEventListener("click", function(e){
-    e.preventDefault();
-    if(bntCodificar.checked && select.value == "base64"){
-        var textoAplicado = document.getElementById('textoUsuario').value
-        var textoCodificado = btoa(textoAplicado)
-        resultado.innerHTML = `${textoCodificado}`
-
-    }
-})
-
 
 bntDecoder.addEventListener("click", function(e){
     e.preventDefault();
-    if(bntDecodificar.checked && select.value == "base64"){
-        var textoAplicado = document.getElementById('textoUsuario').value
-        var textoCodificado = atob(textoAplicado)
-        resultado.innerHTML = `${textoCodificado}`
+    if(bntCodificar.checked){
+        if(select.value == "base64"){
+            var textoAplicado = document.getElementById('textoUsuario').value
+            var textoCodificado = btoa(textoAplicado)
+            resultado.value = textoCodificado
+        } else{
+            
+            var textoCodificado = codCesar(textoAplicado)
+            resultado.value = textoCodificado
+       }
 
-    }
+    } else{
+        if(select.value == "base64"){
+            var textoAplicado = document.getElementById('textoUsuario').value
+            var textoCodificado = atob(textoAplicado)
+            resultado.value = textoCodificado
+        } else{
+            var textoCodificado = decodCesar()
+            resultado.value = textoCodificado
+
+        }
+    } 
+    
 })
+
